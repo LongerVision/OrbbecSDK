@@ -48,7 +48,10 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})  # project is used 
     set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fPIC -g")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -O3")
     set(CMAKE_BUILD_TYPE "Release")
-    set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install")
+
+    if(NOT DEFINED CMAKE_INSTALL_PREFIX)
+        set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install")
+    endif()
 
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
     set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -110,3 +113,4 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})  # project is used 
     # Uninstall target
     include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/UninstallTarget.cmake)
 endif()
+
